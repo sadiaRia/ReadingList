@@ -1,11 +1,19 @@
-import React, { createContext, useState, useReducer } from 'react';
+import React, { createContext, useState, useReducer, useEffect } from 'react';
 import uuid from 'uuid/v1';
 import { bookReducer } from '../reducers/bookReducer';
 
 export const BookContext = createContext();
 
 const BookContextProvider = (props) => {
-  const [books, dispatch] = useReducer(bookReducer, [])
+  const [books, dispatch] = useReducer(bookReducer, [], () => {
+    const localItem = localStorage.getItem('books');
+    return localStorage ? JSON.parse(localItem) : []
+  }
+  )
+
+  useEffect(() => {
+    localStorage.setItem('books', JSON.stringify(books))
+  }, [books])
 
   // const [books, setBooks] = useState([
   //   { title: 'Harry Potter', author: 'J. K. Rowling', id: 1 },
