@@ -8,9 +8,9 @@ function App() {
   return (
     <div className="App">
       <BookContextProvider>
-        <NavBar/>
-        <BookList/>
-        <BookForm/>
+        <NavBar />
+        <BookList />
+        <BookForm />
       </BookContextProvider>
     </div>
   );
