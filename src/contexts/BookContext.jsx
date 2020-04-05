@@ -4,10 +4,11 @@ import { bookReducer } from '../reducers/bookReducer';
 
 export const BookContext = createContext();
 
+//sfc for creating functional structure
 const BookContextProvider = (props) => {
   const [books, dispatch] = useReducer(bookReducer, [], () => {
     const localItem = localStorage.getItem('books');
-    return localStorage ? JSON.parse(localItem) : []
+    return localItem ? JSON.parse(localItem) : []
   }
   )
 
